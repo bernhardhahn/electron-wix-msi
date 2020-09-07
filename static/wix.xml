@@ -24,7 +24,7 @@
     <!-- Overrides the default reboot behavior if files are in use during the upgrade.
      This way no unpxecpted reboot will happpen.-->
     <Property Id="REBOOT" Value="ReallySuppress" />
-    
+
     <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
 
     <!-- Handle Updates -->
@@ -59,6 +59,7 @@
                   Name="{{ShortcutName}}"
                   Description="{{ApplicationDescription}}"
                   Target="[APPLICATIONROOTDIRECTORY]{{ApplicationBinary}}.exe"
+                  Arguments="{{ShortcutArguments}}"
                   WorkingDirectory="APPLICATIONROOTDIRECTORY">
           <ShortcutProperty Key="System.AppUserModel.ID" Value="{{AppUserModelId}}" />
         </Shortcut>

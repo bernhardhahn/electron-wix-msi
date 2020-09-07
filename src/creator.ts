@@ -29,6 +29,7 @@ export interface MSICreatorOptions {
   shortName?: string;
   shortcutFolderName?: string;
   shortcutName?: string;
+  shortcutArguments?: string;
   ui?: UIOptions | boolean;
   upgradeCode?: string;
   version: string;
@@ -81,6 +82,7 @@ export class MSICreator {
   public shortName: string;
   public shortcutFolderName: string;
   public shortcutName: string;
+  public shortcutArguments: string;
   public upgradeCode: string;
   public version: string;
   public certificateFile?: string;
@@ -111,6 +113,7 @@ export class MSICreator {
     this.shortName = options.shortName || options.name;
     this.shortcutFolderName = options.shortcutFolderName || options.manufacturer;
     this.shortcutName = options.shortcutName || options.name;
+    this.shortcutArguments = options.shortcutArguments || '';
     this.signWithParams = options.signWithParams;
     this.upgradeCode = options.upgradeCode || uuid();
     this.version = options.version;
@@ -205,6 +208,7 @@ export class MSICreator {
       '{{Manufacturer}}': this.manufacturer,
       '{{ShortcutFolderName}}': this.shortcutFolderName,
       '{{ShortcutName}}': this.shortcutName,
+      '{{ShortcutArguments}}': this.shortcutArguments,
       '{{UpgradeCode}}': this.upgradeCode,
       '{{Version}}': this.version,
       '{{Platform}}': this.arch,
