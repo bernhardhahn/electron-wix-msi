@@ -33,7 +33,7 @@
     <!-- if program_files_path is set: create formatted shortcut_arg -->
     <SetProperty Action="SetShortcutArg"
       Id="SHORTCUT_ARG"  Before="AppSearch"
-      Value="/D=&quot;[PROGRAM_FILES_PATH]\{{ApplicationName}} - Program Files&quot;">
+      Value="/D=&quot;[PROGRAM_FILES_PATH]\{{InnerApplicationName}} - Program Files\&quot;">
       <![CDATA[PROGRAM_FILES_PATH<>"empty"]]>
       </SetProperty>
 

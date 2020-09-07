@@ -24,6 +24,7 @@ export interface MSICreatorOptions {
   language?: number;
   manufacturer: string;
   name: string;
+  innerAppName: string;
   outputDirectory: string;
   programFilesFolderName?: string;
   shortName?: string;
@@ -77,6 +78,7 @@ export class MSICreator {
   public language: number;
   public manufacturer: string;
   public name: string;
+  public innerAppName: string;
   public outputDirectory: string;
   public programFilesFolderName: string;
   public shortName: string;
@@ -108,6 +110,7 @@ export class MSICreator {
     this.language = options.language || 1033;
     this.manufacturer = options.manufacturer;
     this.name = options.name;
+    this.innerAppName = options.innerAppName || options.name;
     this.outputDirectory = options.outputDirectory;
     this.programFilesFolderName = options.programFilesFolderName || options.name;
     this.shortName = options.shortName || options.name;
@@ -201,6 +204,7 @@ export class MSICreator {
       '{{ApplicationBinary}}': this.exe,
       '{{ApplicationDescription}}': this.description,
       '{{ApplicationName}}': this.name,
+      '{{InnerApplicationName}}': this.innerAppName,
       '{{ApplicationShortcutGuid}}': uuid(),
       '{{ApplicationShortName}}': this.shortName,
       '{{AppUserModelId}}': this.appUserModelId,
