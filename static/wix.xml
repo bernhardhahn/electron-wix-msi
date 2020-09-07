@@ -25,6 +25,18 @@
      This way no unpxecpted reboot will happpen.-->
     <Property Id="REBOOT" Value="ReallySuppress" />
 
+    <!-- Add custom property to allow sys admins to control where user instancs is installed  -->
+    <!-- msiexec /i the_msi_file.msi PROGRAM_FILES_PATH="%APPDATA%" -->
+    <Property Id="PROGRAM_FILES_PATH" Value="empty"/>
+    <Property Id="SHORTCUT_ARG" Value="{{ShortcutArguments}}" />
+
+    <!-- if program_files_path is set: create formatted shortcut_arg -->
+    <SetProperty Action="SetShortcutArg"
+      Id="SHORTCUT_ARG"  Before="AppSearch"
+      Value="/D=&quot;[PROGRAM_FILES_PATH]\{{ApplicationName}} - Program Files&quot;">
+      <![CDATA[PROGRAM_FILES_PATH<>"empty"]]>
+      </SetProperty>
+
     <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
 
     <!-- Handle Updates -->
@@ -59,7 +71,7 @@
                   Name="{{ShortcutName}}"
                   Description="{{ApplicationDescription}}"
                   Target="[APPLICATIONROOTDIRECTORY]{{ApplicationBinary}}.exe"
-                  Arguments="{{ShortcutArguments}}"
+                  Arguments="[SHORTCUT_ARG]"
                   WorkingDirectory="APPLICATIONROOTDIRECTORY">
           <ShortcutProperty Key="System.AppUserModel.ID" Value="{{AppUserModelId}}" />
         </Shortcut>

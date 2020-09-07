@@ -113,7 +113,7 @@ export class MSICreator {
     this.shortName = options.shortName || options.name;
     this.shortcutFolderName = options.shortcutFolderName || options.manufacturer;
     this.shortcutName = options.shortcutName || options.name;
-    this.shortcutArguments = options.shortcutArguments || '';
+    this.shortcutArguments = options.shortcutArguments || ' ';
     this.signWithParams = options.signWithParams;
     this.upgradeCode = options.upgradeCode || uuid();
     this.version = options.version;
